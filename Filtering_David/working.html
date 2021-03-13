@@ -1,0 +1,84 @@
+<!-- In the specific code -->
+<div class="controls">
+    <button type="button" class="control" data-filter="all">All</button>
+    <button type="button" class="control" data-filter=".green">Green</button>
+    <button type="button" class="control" data-filter=".blue">Blue</button>
+    <button type="button" class="control" data-filter=".pink">Pink</button>
+    <button type="button" class="control" data-filter="none">None</button>
+
+    <button type="button" class="control" data-sort="default:asc">Asc</button>
+    <button type="button" class="control" data-sort="default:desc">Desc</button>
+</div>
+
+<div class="container">
+    <div class="mix green">
+        <!-- <img src="assets/images/contextual_inquiry.svg"/> -->
+        <p>Green</p>
+    </div>
+    <div class="mix green">
+        <!-- <img src="assets/images/ux_ui_design.svg"/> -->
+        <p>Green</p>
+    </div>
+    <div class="mix blue">
+        <!-- <img src="assets/images/sbm/collecting1.jpg"/> -->
+        <p>Blue</p>
+    </div>
+    <div class="mix pink">
+        <!-- <img src="assets/images/sbm/collecting2.jpg"/> -->
+        <p>Pink</p>
+    </div>
+    <div class="gap"></div>
+</div>
+
+<!-- In the advanced code -->
+
+<!-- jQUery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- For mixitup -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js" integrity="sha512-nKZDK+ztK6Ug+2B6DZx+QtgeyAmo9YThZob8O3xgjqhw2IVQdAITFasl/jqbyDwclMkLXFOZRiytnUrXk/PM6A==" crossorigin="anonymous"></script>
+
+<script>
+
+    $(document).ready(function(){
+        // Add 'container' class to the parent gallery div
+        var parentGallery = $("div.sqs-block-gallery");
+        console.log('parentGallery: ', parentGallery);
+        parentGallery.addClass('container');
+
+        // Define gallery image div array
+        var galleryImageDivArray = $('div.sqs-gallery-design-grid-slide');
+        console.log('galleryImageDivArray: ', galleryImageDivArray);
+
+
+        // Add 'mix' class to each gallery image div
+        galleryImageDivArray.addClass('mix');
+
+        var galleryImageAltArray = galleryImageDivArray.find('img');
+        var eachImageAltArray = [];
+        for (let item of galleryImageAltArray){
+            console.log('item: ', item);
+            eachImageAlt= item['alt'];
+            console.log('eachImageAlt: ', eachImageAlt);
+            eachImageAltArray.push(eachImageAlt);
+        }
+
+        console.log('eachImageAltArray: ', eachImageAltArray);
+        // i.e. ["green", "green", "blue", "pink"]
+
+        // Add alt to each galleryImageDivArray
+
+        for (var i = 0; i < eachImageAltArray.length; i++){
+            console.log('i: ', i);
+            console.log('eachImageAltArray[i]', eachImageAltArray[i]);
+            galleryImageDivArray[i].classList.add(eachImageAltArray[i]);
+        }
+
+        // Configure mixup
+        var containerEl = document.querySelector('.container');
+
+        var mixer = mixitup(containerEl);
+
+        console.log('mixItReady');
+    });
+
+</script>

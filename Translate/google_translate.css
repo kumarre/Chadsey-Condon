@@ -1,9 +1,15 @@
 /* Custom CSS */
------------------------ -->
+/* ----------------------- */
+
+/* hid google translate element */
 #google_translate_element {
+    display: none;
+}
+
+#translation {
     position: absolute;
     display: inline;
     top: 0;
-    right: 0;
+    left: 0;
     z-index: 999;
 }

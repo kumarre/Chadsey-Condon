@@ -15,16 +15,34 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
+
+        // Execute function to assign js source
+
             js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
           
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<script>
-    let translateBtn = getElementById("google_translate_element");
+<!-- <script>
+    let translate = document.getElementById("google_translate_element");
 
-</script>
+    // Read the button change and reload faacebook sdk
+    function readLanguage() {
+        let text = document.getElementById("yui_3_17_2_1_1615657539035_611").innerHTML;
+
+        if (text === "Arabic") {
+
+        }
+        else if (text === "")
+
+    }
+    
+    translate.addEventListener("click", readLanguage());
+
+</script> -->
+
+
 
 
 

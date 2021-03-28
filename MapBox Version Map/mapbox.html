@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Chadsey Condon Map</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+        <style>
+            body { margin: 0; padding: 0; }
+            #map { position: absolute; top: -400px; bottom: 0; width: 100%; height:1500%;}
+            .Organization {
+              background-image: url('https://cdn1.iconfinder.com/data/icons/business-finance-vol-7-6/512/06-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .School {
+              background-image: url('https://cdn0.iconfinder.com/data/icons/learning-icons-rounded/110/School-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Auto {
+              background-image: url('https://cdn4.iconfinder.com/data/icons/energy-3/63/car-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Museum {
+              background-image: url('https://cdn1.iconfinder.com/data/icons/city-filled-outline-1/512/museum_exhibition_art_gallery_exposition_urban_city-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Employeement {
+              background-image: url('https://cdn4.iconfinder.com/data/icons/business-and-e-commerce/64/Employee_man-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Bank {
+              background-image: url('https://cdn4.iconfinder.com/data/icons/office-and-business-conceptual-flat/169/20-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Transportation {
+              background-image: url('https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/plane-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Mail {
+              background-image: url('https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/letter-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Food {
+              background-image: url('https://cdn3.iconfinder.com/data/icons/food-and-drink-color/64/food_pizza_fastfood_snack_italian_fat_restaurant-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Other {
+              background-image: url('https://cdn2.iconfinder.com/data/icons/happy-birthday-cartoon-2/512/d308_15-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Orgs {
+              background-image: url('https://cdn0.iconfinder.com/data/icons/seo-flat-long-shadow-1/512/Structure-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Service {
+              background-image: url('https://cdn4.iconfinder.com/data/icons/creative-process-16/512/Build-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+            .Healthcare {
+              background-image: url('https://cdn1.iconfinder.com/data/icons/smashicons-medical-flat-vol-3/58/143_-_Health_medical_health_healthcare-256.png');
+              background-size: cover;
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css">
+        <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+        <div id="map"></div>
+        <script>
+
+            //access to MapBox
+            mapboxgl.accessToken = 'pk.eyJ1IjoibGl6aHUzMDI5IiwiYSI6ImNrbHllM2k0ZDBtdzAybnMybGo1Zzh4NzMifQ.j9moUMU7h_Xug3QnoWrW8Q';
+
+            var map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [-83.1227951, 42.3312053], // starting position
+                zoom: 15 // starting zoom
+            });
+
+            // Add geolocate control to the map.
+            map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true
+                })
+            );
+
+            map.addControl(
+                new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    mapboxgl: mapboxgl
+                })
+            );
+
+            var geoText = '[{"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.17076, 42.35837]}, "properties": {"title": "God\u2019s House of Prayer", "description": "<h3>God\u2019s House of Prayer</h3><p><strong>Address:</strong>12929 Joy Rd </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48228</p><p><strong>Phone:</strong>3138346868</p><p><strong>Website:</strong> <a href=http://detroitgodshouseofprayer.org/>http://detroitgodshouseofprayer.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.09647, 42.33433]}, "properties": {"title": "New Starlight Baptist Church", "description": "<h3>New Starlight Baptist Church</h3><p><strong>Address:</strong>3710 Martin Luther King Jr Blvd </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3133616722</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.09329, 42.33498]}, "properties": {"title": "Clinton Chapel Church", "description": "<h3>Clinton Chapel Church</h3><p><strong>Address:</strong>3381 23rd St. </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138975866</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.09206, 42.33701]}, "properties": {"title": "St. William Church-God-Christ", "description": "<h3>St. William Church-God-Christ</h3><p><strong>Address:</strong>3595 Jeffries Fwy </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138947771</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.09208, 42.33229]}, "properties": {"title": "Zion Chapel Church-Christ Hllnss", "description": "<h3>Zion Chapel Church-Christ Hllnss</h3><p><strong>Address:</strong>3000 24th St </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48216</p><p><strong>Phone:</strong>3138944320</p><p><strong>Website:</strong> <a href=http://www.zionchapelchurch.org/>http://www.zionchapelchurch.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.1005, 42.33825]}, "properties": {"title": "New Mt Moriah Baptist Church", "description": "<h3>New Mt Moriah Baptist Church</h3><p><strong>Address:</strong>3816 Nall St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>2483323070</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10113, 42.3435]}, "properties": {"title": "Rightway Baptist Church", "description": "<h3>Rightway Baptist Church</h3><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Phone:</strong>3138994133</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10436, 42.34763]}, "properties": {"title": "Galatian Christian Church", "description": "<h3>Galatian Christian Church</h3><p><strong>Address:</strong>5330 Roosevelt St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138960330</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10566, 42.34748]}, "properties": {"title": "Bailey Temple Church of God in Christ", "description": "<h3>Bailey Temple Church of God in Christ</h3><p><strong>Address:</strong>5370 McKinley St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138987996</p><p><strong>Website:</strong> <a href=http://baileytemplecogic.org/>http://baileytemplecogic.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11207, 42.33144]}, "properties": {"title": "Iglesia De Jesucristo El Buen Samaritano", "description": "<h3>Iglesia De Jesucristo El Buen Samaritano</h3><p><strong>Address:</strong>5622 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133616728</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10908, 42.33381]}, "properties": {"title": "Christ Temple Apostolic Faith Church", "description": "<h3>Christ Temple Apostolic Faith Church</h3><p><strong>Address:</strong>Jackson Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10616, 42.33221]}, "properties": {"title": "Greater Mt Huron Baptist Church", "description": "<h3>Greater Mt Huron Baptist Church</h3><p><strong>Address:</strong>3530 29th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138941380</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10634, 42.333]}, "properties": {"title": "Visitor\u2019s Chapel Church", "description": "<h3>Visitor\u2019s Chapel Church</h3><p><strong>Address:</strong>4519 Magnolia St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10972, 42.32777]}, "properties": {"title": "St. Hedwig Catholic Church", "description": "<h3>St. Hedwig Catholic Church</h3><p><strong>Address:</strong>3245 Junction Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138945409</p><p><strong>Website:</strong> <a href=http://www.sthedwigchurch.org/>http://www.sthedwigchurch.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11958, 42.33703]}, "properties": {"title": "Iglesia Pentecostal Puerta Del Cielo", "description": "<h3>Iglesia Pentecostal Puerta Del Cielo</h3><p><strong>Address:</strong>4756 Wesson St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3136054554</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.12236, 42.33619]}, "properties": {"title": "Dove Christian Center Church", "description": "<h3>Dove Christian Center Church</h3><p><strong>Address:</strong>4660 Military St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133613683</p><p><strong>Website:</strong> <a href=http://www.dovechurch.org/about-us/>http://www.dovechurch.org/about-us/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.12185, 42.33383]}, "properties": {"title": "Hope Evangelical Evangelical", "description": "<h3>Hope Evangelical Evangelical</h3><p><strong>Address:</strong>4538 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.1178, 42.33406]}, "properties": {"title": "St. Francis D\u2019Assisi Hall", "description": "<h3>St. Francis D\u2019Assisi Hall</h3><p><strong>Address:</strong>4417 Wesson St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138940163</p><p><strong>Website:</strong> <a href=http://stfrancis-sthedwig.org/StFrancis/History.htm>http://stfrancis-sthedwig.org/StFrancis/History.htm</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11491, 42.33677]}, "properties": {"title": "Free Gift Baptist Church", "description": "<h3>Free Gift Baptist Church</h3><p><strong>Address:</strong>4509 33rd St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138987475</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11491, 42.33889]}, "properties": {"title": "New Deliverance Pentecostal Church of Truth", "description": "<h3>New Deliverance Pentecostal Church of Truth</h3><p><strong>Address:</strong>4718 32nd St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138798599</p><p><strong>Website:</strong> <a href=http://newdeliverancepentecostalchurch.org/>http://newdeliverancepentecostalchurch.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11162, 42.33766]}, "properties": {"title": "Springfield Baptist Church", "description": "<h3>Springfield Baptist Church</h3><p><strong>Address:</strong>4489 30th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138940464</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11156, 42.34019]}, "properties": {"title": "House of Jesus", "description": "<h3>House of Jesus</h3><p><strong>Address:</strong>4721 28th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138949699</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11242, 42.34205]}, "properties": {"title": "Bethel Temple Baptist Church", "description": "<h3>Bethel Temple Baptist Church</h3><p><strong>Address:</strong>5024 28th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138965410</p><p><strong>Website:</strong> <a href=http://www.btchurchdetroit.org/>http://www.btchurchdetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11011, 42.33799]}, "properties": {"title": "Motor City Missionary Baptist Church", "description": "<h3>Motor City Missionary Baptist Church</h3><p><strong>Address:</strong>4461 28th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138962166</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10778, 42.34085]}, "properties": {"title": "Triumph the Church & Kingdom", "description": "<h3>Triumph the Church & Kingdom</h3><p><strong>Address:</strong>4680 Scotten Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138974778</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.10998, 42.34131]}, "properties": {"title": "Word of Truth Baptist Church", "description": "<h3>Word of Truth Baptist Church</h3><p><strong>Address:</strong>4900 Lovett St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138975213</p><p><strong>Website:</strong> <a href=http://word-church.edan.io/>http://word-church.edan.io/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11261, 42.34403]}, "properties": {"title": "Pleasant hill Mssnrry Baptist Church", "description": "<h3>Pleasant hill Mssnrry Baptist Church</h3><p><strong>Address:</strong>5207 Lovett St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138983680</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.12606, 42.33004]}, "properties": {"title": "Our Lady Queen of Angels", "description": "<h3>Our Lady Queen of Angels</h3><p><strong>Address:</strong>4200 Martin St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.12358, 42.32829]}, "properties": {"title": "St John the Baptist Ukrainian Catholic Parish", "description": "<h3>St John the Baptist Ukrainian Catholic Parish</h3><p><strong>Address:</strong>3877 Clippert St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138977300</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.12004, 42.3289]}, "properties": {"title": "Ss. Peter & Paul Orthodox Cathedral", "description": "<h3>Ss. Peter & Paul Orthodox Cathedral</h3><p><strong>Address:</strong>3810 Gilbert St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138973308</p><p><strong>Website:</strong> <a href=http://www.ssppdetroit.org/>http://www.ssppdetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11799, 42.32723]}, "properties": {"title": "First Spanish Baptist Church", "description": "<h3>First Spanish Baptist Church</h3><p><strong>Address:</strong>3495 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138947755</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.11951, 42.32606]}, "properties": {"title": "Open Door Baptist Church", "description": "<h3>Open Door Baptist Church</h3><p><strong>Address:</strong>3464 Cicotte St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138971611</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.128, 42.33179]}, "properties": {"title": "Iglesia De Dios Pentecostal", "description": "<h3>Iglesia De Dios Pentecostal</h3><p><strong>Address:</strong>4655 Martin St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138434470</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.12817, 42.33202]}, "properties": {"title": "Third Latin American Baptist Church", "description": "<h3>Third Latin American Baptist Church</h3><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138422330</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.14028, 42.32509]}, "properties": {"title": "Iglesia Cristiana La Roca Eterna", "description": "<h3>Iglesia Cristiana La Roca Eterna</h3><p><strong>Address:</strong>4300 Lonyo St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135821897</p><p><strong>Website:</strong> <a href=http://www.rocaeternadedetroit.org/>http://www.rocaeternadedetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.14465, 42.33579]}, "properties": {"title": "Mariam Mosque", "description": "<h3>Mariam Mosque</h3><p><strong>Address:</strong>5711 Lumley St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133126505</p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.14719, 42.33704]}, "properties": {"title": "St Cunegunda Church", "description": "<h3>St Cunegunda Church</h3><p><strong>Address:</strong>5900 St Lawrence St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138434717</p><p><strong>Website:</strong> <a href=http://www.saintbarbarasaintcunegunda.org/>http://www.saintbarbarasaintcunegunda.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.1335, 42.34456]}, "properties": {"title": "Power Hope & Grace Church", "description": "<h3>Power Hope & Grace Church</h3><p><strong>Address:</strong>6495 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138957464</p><p><strong>Website:</strong> <a href=http://www.phgbc.org/>http://www.phgbc.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Organization", "coordinates": [-83.13029, 42.34349]}, "properties": {"title": "Iglesia Pentecostal El Shaddai Adonai", "description": "<h3>Iglesia Pentecostal El Shaddai Adonai</h3><p><strong>Address:</strong>6331 Barlum St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138944035</p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.10321, 42.34262]}, "properties": {"title": "West Side Academy", "description": "<h3>West Side Academy</h3><p><strong>Address:</strong>4701 McKinley St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3134568000</p><p><strong>Website:</strong> <a href=https://www.detroitk12.org/westside>https://www.detroitk12.org/westside</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.10938, 42.3347]}, "properties": {"title": "New Paradigm College Prep", "description": "<h3>New Paradigm College Prep</h3><p><strong>Address:</strong>4001 29th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3134067060</p><p><strong>Website:</strong> <a href=https://npcollegeprep.org/>https://npcollegeprep.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.11995, 42.33248]}, "properties": {"title": "Voyageur Academy", "description": "<h3>Voyageur Academy</h3><p><strong>Address:</strong>4321 Military St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133614180</p><p><strong>Website:</strong> <a href=http://www.voyageuracademy.com/>http://www.voyageuracademy.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.11928, 42.33307]}, "properties": {"title": "Voyageur College Preparatory High School", "description": "<h3>Voyageur College Preparatory High School</h3><p><strong>Address:</strong>4366 Military St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3137484000</p><p><strong>Website:</strong> <a href=http://www.voyageurcollegeprep.com/>http://www.voyageurcollegeprep.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.11071, 42.32705]}, "properties": {"title": "Academy of the Americas", "description": "<h3>Academy of the Americas</h3><p><strong>Address:</strong>5680 Konkel St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135967640</p><p><strong>Website:</strong> <a href=https://www.detroitk12.org/AcademyoftheAmericas>https://www.detroitk12.org/AcademyoftheAmericas</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.11689, 42.33478]}, "properties": {"title": "Hope of Detroit Academy", "description": "<h3>Hope of Detroit Academy</h3><p><strong>Address:</strong>4443 N Campbell St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138978720</p><p><strong>Website:</strong> <a href=http://www.hopeofdetroit.com/>http://www.hopeofdetroit.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.11581, 42.33569]}, "properties": {"title": "Hope of Detroit Academy Middle/High School", "description": "<h3>Hope of Detroit Academy Middle/High School</h3><p><strong>Address:</strong>4444 35th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3137881122</p><p><strong>Website:</strong> <a href=http://hopeofdetroit.com/>http://hopeofdetroit.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.13445, 42.32765]}, "properties": {"title": "St. Stephen Mother Mary- The Church", "description": "<h3>St. Stephen Mother Mary- The Church</h3><p><strong>Address:</strong>4330 Central Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138420876</p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.1346, 42.32728]}, "properties": {"title": "Our Lady of Guadalupe Parish", "description": "<h3>Our Lady of Guadalupe Parish</h3><p><strong>Address:</strong>4330 Central Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138410783</p><p><strong>Website:</strong> <a href=http://our-parish.edan.io/>http://our-parish.edan.io/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.12514, 42.32906]}, "properties": {"title": "Cesar Chavez Acaademy", "description": "<h3>Cesar Chavez Acaademy</h3><p><strong>Address:</strong>4100 Martin St #3-5</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133611083</p><p><strong>Website:</strong> <a href=http://www.chavezacademy.com/>http://www.chavezacademy.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.14528, 42.32818]}, "properties": {"title": "Universal Academy", "description": "<h3>Universal Academy</h3><p><strong>Address:</strong>4833 Ogden St, Detroit</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135815006</p><p><strong>Website:</strong> <a href=http://www.universalpsa.org/>http://www.universalpsa.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.14386, 42.33673]}, "properties": {"title": "Priest Elementary-Middle School", "description": "<h3>Priest Elementary-Middle School</h3><p><strong>Address:</strong>7840 Wagner St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138493705</p><p><strong>Website:</strong> <a href=https://www.detroitk12.org/schools/priest>https://www.detroitk12.org/schools/priest</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.13617, 42.33823]}, "properties": {"title": "Brillant Detroit", "description": "<h3>Brillant Detroit</h3><p><strong>Address:</strong>5675 Larkins St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3134838992</p><p><strong>Website:</strong> <a href=http://www.brilliantdetroit.org/>http://www.brilliantdetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "School", "coordinates": [-83.13272, 42.33722]}, "properties": {"title": "Munger Elementary-Middle School", "description": "<h3>Munger Elementary-Middle School</h3><p><strong>Address:</strong>5525 Martin St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3134576200</p><p><strong>Website:</strong> <a href=http://detroitk12.org/>http://detroitk12.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Funeral", "coordinates": [-83.10718, 42.3451]}, "properties": {"title": "Heard and Taylor Family Funeral Home", "description": "<h3>Heard and Taylor Family Funeral Home</h3><p><strong>Address:</strong>1540 W Grand Blvd</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138951950</p><p><strong>Website:</strong> <a href=http://www.heardandtaylorfuneralhome.com/>http://www.heardandtaylorfuneralhome.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Funeral", "coordinates": [-83.11942, 42.32927]}, "properties": {"title": "Professional Mortuary Services", "description": "<h3>Professional Mortuary Services</h3><p><strong>Address:</strong>3833 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138941334</p><p><strong>Website:</strong> <a href=https://www.promortservices.com/>https://www.promortservices.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Funeral", "coordinates": [-83.13233, 42.33134]}, "properties": {"title": "Verheyden Funeral Home in Detroit", "description": "<h3>Verheyden Funeral Home in Detroit</h3><p><strong>Address:</strong>7100 Michigan Ave #2249</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138418284</p><p><strong>Website:</strong> <a href=https://www.verheyden.org/>https://www.verheyden.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.09983, 42.34809]}, "properties": {"title": "Vehicle Clinic Inc", "description": "<h3>Vehicle Clinic Inc</h3><p><strong>Address:</strong>5255 Tillman St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138957600</p><p><strong>Website:</strong> <a href=https://vehicleclinic.com/>https://vehicleclinic.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.09978, 42.34859]}, "properties": {"title": "Kerry Brothers Truck Repair", "description": "<h3>Kerry Brothers Truck Repair</h3><p><strong>Address:</strong>5255 Tillman St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138956600</p><p><strong>Website:</strong> <a href=http://kerrybros.com/>http://kerrybros.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.12085, 42.33246]}, "properties": {"title": "Livernois Discount Muffler & Brake Ctr", "description": "<h3>Livernois Discount Muffler & Brake Ctr</h3><p><strong>Address:</strong>4292 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138943399</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.11579, 42.33146]}, "properties": {"title": "Michigan Appliance and Repair", "description": "<h3>Michigan Appliance and Repair</h3><p><strong>Address:</strong>5900 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138183775</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.11693, 42.33143]}, "properties": {"title": "Detroit Auto Center", "description": "<h3>Detroit Auto Center</h3><p><strong>Address:</strong>6000 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3139714700</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.10878, 42.3315]}, "properties": {"title": "PT Automotive Paints & Parts", "description": "<h3>PT Automotive Paints & Parts</h3><p><strong>Address:</strong>4828 Michigan Ave, Detroit, MI 48210</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138941410</p><p><strong>Website:</strong> <a href=https://www.ptautopaintsandparts.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb>https://www.ptautopaintsandparts.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.11143, 42.33144]}, "properties": {"title": "Lozano\u2019s", "description": "<h3>Lozano\u2019s</h3><p><strong>Address:</strong>5536 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132315142</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.10519, 42.33002]}, "properties": {"title": "Borg Brothers Truck Repair", "description": "<h3>Borg Brothers Truck Repair</h3><p><strong>Address:</strong>3325 29th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138952300</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.13326, 42.33141]}, "properties": {"title": "Orozco\u2019s Tire Repair", "description": "<h3>Orozco\u2019s Tire Repair</h3><p><strong>Address:</strong>7154 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135543259</p><p><strong>Website:</strong> <a href=http://orozcos-tire-repair.jany.io/>http://orozcos-tire-repair.jany.io/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.14433, 42.33376]}, "properties": {"title": "HNA Auto", "description": "<h3>HNA Auto</h3><p><strong>Address:</strong>8111 McGraw Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3134022002</p><p><strong>Website:</strong> <a href=https://www.facebook.com/HNA19/>https://www.facebook.com/HNA19/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.14851, 42.34341]}, "properties": {"title": "Fifty One Auto", "description": "<h3>Fifty One Auto</h3><p><strong>Address:</strong>8060 Wheeler St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.14842, 42.34084]}, "properties": {"title": "Mario\u2019s", "description": "<h3>Mario\u2019s</h3><p><strong>Address:</strong>6554 Sanger St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3134277429</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.14884, 42.33239]}, "properties": {"title": "Pioneer True Value Hardware", "description": "<h3>Pioneer True Value Hardware</h3><p><strong>Address:</strong>8544 McGraw St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138418800</p><p><strong>Website:</strong> <a href=https://stores.truevalue.com/mi/detroit/19577/>https://stores.truevalue.com/mi/detroit/19577/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.14493, 42.3445]}, "properties": {"title": "Father & Son Collision", "description": "<h3>Father & Son Collision</h3><p><strong>Address:</strong>7601 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3139771010</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.12631, 42.33847]}, "properties": {"title": "Tigers Complete Auto", "description": "<h3>Tigers Complete Auto</h3><p><strong>Address:</strong>5303 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133383360</p>"}}, {"type": "Feature", "geometry": {"type": "Auto", "coordinates": [-83.13688, 42.34472]}, "properties": {"title": "Gary & Son True Value Hardware", "description": "<h3>Gary & Son True Value Hardware</h3><p><strong>Address:</strong>6747 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138984200</p><p><strong>Website:</strong> <a href=https://stores.truevalue.com/mi/detroit/2301/>https://stores.truevalue.com/mi/detroit/2301/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Museum", "coordinates": [-83.09292, 42.33164]}, "properties": {"title": "Holding House", "description": "<h3>Holding House</h3><p><strong>Address:</strong>3546 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48216</p><p><strong>Website:</strong> <a href=http://www.holdinghousedetroit.com/>http://www.holdinghousedetroit.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Museum", "coordinates": [-83.11875, 42.32696]}, "properties": {"title": "Detroit History Tours", "description": "<h3>Detroit History Tours</h3><p><strong>Address:</strong>3500 Gilbert St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132043786</p><p><strong>Website:</strong> <a href=http://www.detroithistorytours.com/>http://www.detroithistorytours.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Employeement", "coordinates": [-83.15413, 42.32801]}, "properties": {"title": "Detroit at Work Career Center - SER Metro", "description": "<h3>Detroit at Work Career Center - SER Metro</h3><p><strong>Address:</strong>9301 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3139629675</p><p><strong>Website:</strong> <a href=https://detroitatwork.com/>https://detroitatwork.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Employeement", "coordinates": [-83.1534, 42.32847]}, "properties": {"title": "SER Metro-Detroit Jobs for Progress, Inc", "description": "<h3>SER Metro-Detroit Jobs for Progress, Inc</h3><p><strong>Address:</strong>9301 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138462240</p><p><strong>Website:</strong> <a href=http://www.sermetro.org/>http://www.sermetro.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Bank", "coordinates": [-83.12102, 42.33136]}, "properties": {"title": "Western Union", "description": "<h3>Western Union</h3><p><strong>Address:</strong>Valero, 4201 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138985000</p><p><strong>Website:</strong> <a href=www.valero.com>www.valero.com</a></p>"}}, {"type": "Feature", "geometry": {"type": "Transportation", "coordinates": [-83.09885, 42.33188]}, "properties": {"title": "Detroit Cab", "description": "<h3>Detroit Cab</h3><p><strong>Address:</strong>3245 Hubbard St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138416000</p>"}}, {"type": "Feature", "geometry": {"type": "Transportation", "coordinates": [-83.144798, 42.330139]}, "properties": {"title": "Jorgensen Ford", "description": "<h3>Jorgensen Ford</h3><p><strong>Address:</strong>8333 Michigan Avenue</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Phone:</strong>3135842250</p><p><strong>Website:</strong> <a href=https://www.jorgensenforddirect.com/>https://www.jorgensenforddirect.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Mail", "coordinates": [-83.13323, 42.34324]}, "properties": {"title": "UPS Customer Center", "description": "<h3>UPS Customer Center</h3><p><strong>Address:</strong>6061 Cicotte St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>8007425877</p><p><strong>Website:</strong> <a href=https://locations.ups.com/mi/detroit/customer-center-006751.html>https://locations.ups.com/mi/detroit/customer-center-006751.html</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.09141, 42.33164]}, "properties": {"title": "Eddie\u2019s Produce", "description": "<h3>Eddie\u2019s Produce</h3><p><strong>Address:</strong>3446 Michigan Ave </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48216</p><p><strong>Phone:</strong>3138972431</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.09928, 42.33244]}, "properties": {"title": "United Meat and Deli", "description": "<h3>United Meat and Deli</h3><p><strong>Address:</strong>Hubbard St </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.10662, 42.34379]}, "properties": {"title": "Antojitos Naty", "description": "<h3>Antojitos Naty</h3><p><strong>Address:</strong>1484 W Grand Blvd</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3132644508</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.10498, 42.34462]}, "properties": {"title": "Vicki\u2019s Bar-B-Q", "description": "<h3>Vicki\u2019s Bar-B-Q</h3><p><strong>Address:</strong>3845 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138949906</p><p><strong>Website:</strong> <a href=https://www.facebook.com/Vickis-Barbecue-Shrimp-111689122199767>https://www.facebook.com/Vickis-Barbecue-Shrimp-111689122199767</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.11608, 42.33061]}, "properties": {"title": "Prince Valley Market", "description": "<h3>Prince Valley Market</h3><p><strong>Address:</strong>5931 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138989717</p><p><strong>Website:</strong> <a href=http://princevalleymarket.com/>http://princevalleymarket.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.11621, 42.32622]}, "properties": {"title": "La Fogata taco bar", "description": "<h3>La Fogata taco bar</h3><p><strong>Address:</strong>3278 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3134624988</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.11953, 42.33368]}, "properties": {"title": "Hacienda Mexican Foods", "description": "<h3>Hacienda Mexican Foods</h3><p><strong>Address:</strong>6100 Buchanan St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>13138958823</p><p><strong>Website:</strong> <a href=http://haciendadegutierrez.com/>http://haciendadegutierrez.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.11587, 42.33476]}, "properties": {"title": "Buchanan Market", "description": "<h3>Buchanan Market</h3><p><strong>Address:</strong>5716 Buchanan St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>13138966877</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.11976, 42.32394]}, "properties": {"title": "Diamante Urban Farm", "description": "<h3>Diamante Urban Farm</h3><p><strong>Address:</strong>6578 John Kronk St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.13175, 42.32395]}, "properties": {"title": "Tacos El Primo", "description": "<h3>Tacos El Primo</h3><p><strong>Address:</strong>3700 Central Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.1293, 42.32796]}, "properties": {"title": "Los Dos Amigos Taco Truck", "description": "<h3>Los Dos Amigos Taco Truck</h3><p><strong>Address:</strong>7115 Parkwood St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132183360</p><p><strong>Website:</strong> <a href=https://www.facebook.com/losdosamigostacotruckdetroit/>https://www.facebook.com/losdosamigostacotruckdetroit/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.13119, 42.33091]}, "properties": {"title": "Jordan\u2019s Family Restaurant", "description": "<h3>Jordan\u2019s Family Restaurant</h3><p><strong>Address:</strong>7031 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138438830</p><p><strong>Website:</strong> <a href=https://flowto.it/d5IJMLNr?fc=0>https://flowto.it/d5IJMLNr?fc=0</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.11652, 42.32477]}, "properties": {"title": "Pupuseria Y Restaurante Salvadoreno", "description": "<h3>Pupuseria Y Restaurante Salvadoreno</h3><p><strong>Address:</strong>3149 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138994020</p><p><strong>Website:</strong> <a href=https://pupuseriayrestaurantesalvadoreno.negocio.site/>https://pupuseriayrestaurantesalvadoreno.negocio.site/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.12616, 42.33136]}, "properties": {"title": "Garden Fresh Marketplace", "description": "<h3>Garden Fresh Marketplace</h3><p><strong>Address:</strong>6680 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138974406</p><p><strong>Website:</strong> <a href=http://www.shopgardenfresh.com/>http://www.shopgardenfresh.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.13289, 42.33133]}, "properties": {"title": "Senor Lopez Restaurant", "description": "<h3>Senor Lopez Restaurant</h3><p><strong>Address:</strong>7146 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.12794, 42.33134]}, "properties": {"title": "Telway Hamburgers", "description": "<h3>Telway Hamburgers</h3><p><strong>Address:</strong>6820 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138432146</p><p><strong>Website:</strong> <a href=http://thetelway.4-food.com/>http://thetelway.4-food.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.12455, 42.33149]}, "properties": {"title": "Rincon Tropical", "description": "<h3>Rincon Tropical</h3><p><strong>Address:</strong>6538 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133348526</p><p><strong>Website:</strong> <a href=http://www.rincontropicaldetroit.com/>http://www.rincontropicaldetroit.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.12478, 42.33137]}, "properties": {"title": "Kwong Village", "description": "<h3>Kwong Village</h3><p><strong>Address:</strong>6600 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138978789</p><p><strong>Website:</strong> <a href=http://www.kwong-village.com/>http://www.kwong-village.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.12705, 42.32726]}, "properties": {"title": "El Comal Restaurant", "description": "<h3>El Comal Restaurant</h3><p><strong>Address:</strong>6905 Edward St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138417753</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.14351, 42.33424]}, "properties": {"title": "Family Fruit", "description": "<h3>Family Fruit</h3><p><strong>Address:</strong>8011 McGraw Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135512004</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.14288, 42.33484]}, "properties": {"title": "Ogden Market", "description": "<h3>Ogden Market</h3><p><strong>Address:</strong>5934 Ogden St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138414196</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.14915, 42.34049]}, "properties": {"title": "Hispanic Food Distribution", "description": "<h3>Hispanic Food Distribution</h3><p><strong>Address:</strong>8100 Radcliffe St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138942100</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.15023, 42.33857]}, "properties": {"title": "Lonyo Supermarket", "description": "<h3>Lonyo Supermarket</h3><p><strong>Address:</strong>6200 Lonyo St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138955410</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.14724, 42.3325]}, "properties": {"title": "Tacos los tapatio\u2019s", "description": "<h3>Tacos los tapatio\u2019s</h3><p><strong>Address:</strong>5175 Renville St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>2488439305</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.1421, 42.33475]}, "properties": {"title": "La Rosita", "description": "<h3>La Rosita</h3><p><strong>Address:</strong>7849 McGraw Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132973145</p><p><strong>Website:</strong> <a href=https://larositarestaurant.com/>https://larositarestaurant.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.18323, 42.34412]}, "properties": {"title": "Shatila Bakery", "description": "<h3>Shatila Bakery</h3><p><strong>Address:</strong>8505 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48126</p><p><strong>Phone:</strong>3139341520</p><p><strong>Website:</strong> <a href=http://www.shatila.com/>http://www.shatila.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.13713, 42.33676]}, "properties": {"title": "Tobey\u2019s Market", "description": "<h3>Tobey\u2019s Market</h3><p><strong>Address:</strong>5546 Chopin St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3133610888</p>"}}, {"type": "Feature", "geometry": {"type": "Food", "coordinates": [-83.13833, 42.33472]}, "properties": {"title": "La Rosa Bakery", "description": "<h3>La Rosa Bakery</h3><p><strong>Address:</strong>5401 Proctor St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138940222</p>"}}, {"type": "Feature", "geometry": {"type": "Other", "coordinates": [-83.1054881, 42.346923]}, "properties": {"title": "Residential Door Unlocking Detroit", "description": "<h3>Residential Door Unlocking Detroit</h3><p><strong>Address:</strong>5328 McKinley St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>2484918426</p><p><strong>Website:</strong> <a href=https://residential-door-unlocking-detroit.business.site/>https://residential-door-unlocking-detroit.business.site/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Other", "coordinates": [-83.1031087, 42.3449632]}, "properties": {"title": "U-Haul Neighborhood Dealer", "description": "<h3>U-Haul Neighborhood Dealer</h3><p><strong>Address:</strong>3704 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138371219</p><p><strong>Website:</strong> <a href=https://www.uhaul.com/Locations/Truck-Rentals-near-Detroit-MI-48208/031144/?utm_source=gmb&utm_medium=primary&utm_content=031144>https://www.uhaul.com/Locations/Truck-Rentals-near-Detroit-MI-48208/031144/?utm_source=gmb&utm_medium=primary&utm_content=031144</a></p>"}}, {"type": "Feature", "geometry": {"type": "Other", "coordinates": [-83.0910386, 42.3314352]}, "properties": {"title": "Fairway Mattress Store", "description": "<h3>Fairway Mattress Store</h3><p><strong>Address:</strong>7654 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135847350</p>"}}, {"type": "Feature", "geometry": {"type": "Other", "coordinates": [-83.0910386, 42.3314352]}, "properties": {"title": "Master Dorians Barbershop", "description": "<h3>Master Dorians Barbershop</h3><p><strong>Address:</strong>7000 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3137723723</p>"}}, {"type": "Feature", "geometry": {"type": "Other", "coordinates": [-83.11004, 42.348147]}, "properties": {"title": "Z\u2019s Barbershop", "description": "<h3>Z\u2019s Barbershop</h3><p><strong>Address:</strong>8031 McGraw Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132053222</p><p><strong>Website:</strong> <a href=http://zs-barber-shop.business.site/>http://zs-barber-shop.business.site/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Other", "coordinates": [-83.14259, 42.3349841]}, "properties": {"title": "Harlet\u2019s Hair Style", "description": "<h3>Harlet\u2019s Hair Style</h3><p><strong>Address:</strong>5610 Springwells St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132974275</p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1009519, 42.3349193]}, "properties": {"title": "Detroit Recovery Project", "description": "<h3>Detroit Recovery Project</h3><p><strong>Address:</strong>1145 W Grand Blvd, Detroit, MI 48208</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3133248900</p><p><strong>Website:</strong> <a href=http://www.recovery4detroit.com/>http://www.recovery4detroit.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1133067, 42.3312395]}, "properties": {"title": "Mom\u2019s & Babes Too", "description": "<h3>Mom\u2019s & Babes Too</h3><p><strong>Address:</strong>5716 Michigan Ave, Detroit, MI 48210</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3139618908</p><p><strong>Website:</strong> <a href=->-</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.0708498, 42.3404187]}, "properties": {"title": "A Place of Our Own Clubhouse", "description": "<h3>A Place of Our Own Clubhouse</h3><p><strong>Address:</strong>1401 Ash St, Detroit, MI 48208</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>313-931-0901</p><p><strong>Website:</strong> <a href=http://www.goodwilldetroit.org/programs/a-place-of-our-own-clubhouse/>http://www.goodwilldetroit.org/programs/a-place-of-our-own-clubhouse/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.0972573, 42.3331006]}, "properties": {"title": "Alternatives for Girls", "description": "<h3>Alternatives for Girls</h3><p><strong>Address:</strong>903 W Grand Blvd, Detroit, MI 48208</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>313-361-4000</p><p><strong>Email:</strong>resourcecenter@alternativesforgirls.org</p><p><strong>Website:</strong> <a href=https://alternativesforgirls.org/>https://alternativesforgirls.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.097836, 42.342722]}, "properties": {"title": "Core City Neighborhoods Inc.", "description": "<h3>Core City Neighborhoods Inc.</h3><p><strong>Address:</strong>3301 23rd St, Detroit, MI 48208</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>313-894-8431</p><p><strong>Website:</strong> <a href=http://www.corecity.org/>http://www.corecity.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.230179, 42.364739]}, "properties": {"title": "St. Suzanne Cody Rouge Community Resource Center", "description": "<h3>St. Suzanne Cody Rouge Community Resource Center</h3><p><strong>Address:</strong>19321 W Chicago, Detroit, MI 48228</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48228</p><p><strong>Phone:</strong>13134939129</p><p><strong>Website:</strong> <a href=http://www.stsuzannecodyrouge.org/>http://www.stsuzannecodyrouge.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1281554, 42.3662684]}, "properties": {"title": "28th St. Family Life Center", "description": "<h3>28th St. Family Life Center</h3><p><strong>Address:</strong>4924 Joy Rd</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48204</p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.147016, 42.3280032]}, "properties": {"title": "American Indian Health and Family Services", "description": "<h3>American Indian Health and Family Services</h3><p><strong>Address:</strong>4880 Lawndale St, Detroit, MI 48210</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>13138463718</p><p><strong>Website:</strong> <a href=https://www.aihfs.org/>https://www.aihfs.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-84.6123766, 42.7265541]}, "properties": {"title": "Association for Children\u2019s Mental Health", "description": "<h3>Association for Children\u2019s Mental Health</h3><p><strong>Address:</strong>6017 W St Joseph Hwy #200, Lansing, MI 48917</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48917</p><p><strong>Phone:</strong>15173724016</p><p><strong>Website:</strong> <a href=http://www.acmh-mi.org/>http://www.acmh-mi.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1323271, 42.3367665]}, "properties": {"title": "Boys and Girls - Bloomer Club", "description": "<h3>Boys and Girls - Bloomer Club</h3><p><strong>Address:</strong>5525 Martin St, Detroit, MI 48210</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-894-3320</p><p><strong>Website:</strong> <a href=https://bgcsm.org/>https://bgcsm.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.135717, 42.339387]}, "properties": {"title": "Boys & Girls Clubs of Southeastern Michigan: Bloomer-Munger Club", "description": "<h3>Boys & Girls Clubs of Southeastern Michigan: Bloomer-Munger Club</h3><p><strong>Address:</strong>6945 Wagner St, Detroit, MI 48210</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-361-88</p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.13367462, 42.33832932]}, "properties": {"title": "Bridging Communities, Inc.", "description": "<h3>Bridging Communities, Inc.</h3><p><strong>Address:</strong>6900 McGraw Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-361-6377</p><p><strong>Email:</strong>bcigeneral@bridgingcommunities.org</p><p><strong>Website:</strong> <a href=https://bridgingcommunities.org/>https://bridgingcommunities.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.135909, 42.3382242]}, "properties": {"title": "Brilliant Detroit", "description": "<h3>Brilliant Detroit</h3><p><strong>Address:</strong>5675 Larkins St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-483-8992</p><p><strong>Email:</strong>brilliantdetroit.org</p><p><strong>Website:</strong> <a href=https://brilliantdetroit.org/>https://brilliantdetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.0970219, 42.3416362]}, "properties": {"title": "Building Better Adults", "description": "<h3>Building Better Adults</h3><p><strong>Address:</strong>4464 23rd St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Contact/Title:</strong>Bernadine Martin</p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.0910386, 42.3314352]}, "properties": {"title": "Chadsey-Condon Community Organization", "description": "<h3>Chadsey-Condon Community Organization</h3><p><strong>Address:</strong>6446 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Contact/Title:</strong>Janlynn Miller </p><p><strong>Phone:</strong>313-974-7162</p><p><strong>Email:</strong>Chadseycondon@gmail.com</p><p><strong>Website:</strong> <a href=http://www.chadseycondon.org/>http://www.chadseycondon.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1346908, 42.3449772]}, "properties": {"title": "Detroit Community Health Connection", "description": "<h3>Detroit Community Health Connection</h3><p><strong>Address:</strong>6550 W Warren Ave, Detroit, MI 48210</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-897-7700</p><p><strong>Website:</strong> <a href=https://www.dchcquality.org/>https://www.dchcquality.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.263091, 42.429139]}, "properties": {"title": "EcoWorks", "description": "<h3>EcoWorks</h3><p><strong>Address:</strong>22400 W Seven Mile Rd</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48219</p><p><strong>Phone:</strong>313-894-1030</p><p><strong>Email:</strong>info@ecoworksdetroit.org</p><p><strong>Website:</strong> <a href=https://www.ecoworksdetroit.org/>https://www.ecoworksdetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1030309, 42.3311749]}, "properties": {"title": "Family Alliance for Change (FAFC) Resource Hub", "description": "<h3>Family Alliance for Change (FAFC) Resource Hub</h3><p><strong>Address:</strong>5716 Michigan Ave #3000</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>13134813102</p><p><strong>Email:</strong>HR@swsol.org</p><p><strong>Website:</strong> <a href=https://www.swsol.org/>https://www.swsol.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1170828, 42.3264577]}, "properties": {"title": "Hacienda - Garage Cultural", "description": "<h3>Hacienda - Garage Cultural</h3><p><strong>Address:</strong>3439 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Contact/Title:</strong>Ismael Duran </p><p><strong>Phone:</strong>313-331-9466</p><p><strong>Email:</strong>info@garagecultural.org</p><p><strong>Website:</strong> <a href=https://www.garagecultural.org/>https://www.garagecultural.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1298215, 42.3297212]}, "properties": {"title": "Knights of Columbus", "description": "<h3>Knights of Columbus</h3><p><strong>Address:</strong>4381 Larkins St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-843-5233</p><p><strong>Website:</strong> <a href=http://holycrosskofc.org/>http://holycrosskofc.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-82.9738932, 42.3418066]}, "properties": {"title": "Loaves and Fishes Southwest Detroit", "description": "<h3>Loaves and Fishes Southwest Detroit</h3><p><strong>Address:</strong>4329 Central Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-749-7324</p><p><strong>Website:</strong> <a href=https://www.loavesandfishesswdetroit.org/>https://www.loavesandfishesswdetroit.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1367887, 42.3385594]}, "properties": {"title": "Matrix Head Start (Cecil)", "description": "<h3>Matrix Head Start (Cecil)</h3><p><strong>Address:</strong>5690 Cecil Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-962-5255</p><p><strong>Email:</strong>inquiries@matrixhs.org</p><p><strong>Website:</strong> <a href=https://www.matrixhumanservices.org/>https://www.matrixhumanservices.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.109934, 42.34099]}, "properties": {"title": "Matrix Human Services (Lovett St)", "description": "<h3>Matrix Human Services (Lovett St)</h3><p><strong>Address:</strong>4900 Lovett St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-898-3043</p><p><strong>Email:</strong>inquiries@matrixhs.org</p><p><strong>Website:</strong> <a href=https://www.matrixhumanservices.org/>https://www.matrixhumanservices.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.117618, 42.334006]}, "properties": {"title": "Michigan United", "description": "<h3>Michigan United</h3><p><strong>Address:</strong>4405 Wesson St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>1-877-507-7774</p><p><strong>Website:</strong> <a href=https://www.miunited.org/>https://www.miunited.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1170828, 42.3264577]}, "properties": {"title": "Motor City Street Dance Academy", "description": "<h3>Motor City Street Dance Academy</h3><p><strong>Address:</strong>3439 Livernois</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-638-2235</p><p><strong>Website:</strong> <a href=http://www.motorcitysda.com/>http://www.motorcitysda.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1333317, 42.344732]}, "properties": {"title": "PHG Urban Life Center", "description": "<h3>PHG Urban Life Center</h3><p><strong>Address:</strong>6495 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Contact/Title:</strong>Evelyn Globe </p><p><strong>Phone:</strong>313-897-7464</p><p><strong>Website:</strong> <a href=https://www.phgbc.org/>https://www.phgbc.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Orgs", "coordinates": [-83.1050344, 42.3299104]}, "properties": {"title": "Project Compassion Ministries", "description": "<h3>Project Compassion Ministries</h3><p><strong>Address:</strong>3307 29th St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>313-897-7470</p>"}}, {"type": "Feature", "geometry": {"type": "Service", "coordinates": [-83.13368, 42.33858]}, "properties": {"title": "Detroit Fire Department - Ladder 22", "description": "<h3>Detroit Fire Department - Ladder 22</h3><p><strong>Address:</strong>6830 McGraw Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p>"}}, {"type": "Feature", "geometry": {"type": "Service", "coordinates": [-83.11391, 42.33063]}, "properties": {"title": "Social Security Administration", "description": "<h3>Social Security Administration</h3><p><strong>Address:</strong>Southwest field office, 5715 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>8773190730</p><p><strong>Website:</strong> <a href=https://www.ssa.gov/>https://www.ssa.gov/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.11356, 42.33149]}, "properties": {"title": "Covenant Community Care", "description": "<h3>Covenant Community Care</h3><p><strong>Address:</strong>5716 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3135541095</p><p><strong>Email:</strong>info@covenantcommunitycare.org</p><p><strong>Website:</strong> <a href=https://covenantcommunitycare.org/>https://covenantcommunitycare.org/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.13514, 42.33086]}, "properties": {"title": "Dental Health and Wellness Center", "description": "<h3>Dental Health and Wellness Center</h3><p><strong>Address:</strong>7433 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138424255</p><p><strong>Website:</strong> <a href=https://dentalhwc.com/>https://dentalhwc.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.10855, 42.33092]}, "properties": {"title": "Dr. Feleta Wilson Health Center", "description": "<h3>Dr. Feleta Wilson Health Center</h3><p><strong>Address:</strong>4771 Michigan Avenue</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138972600</p><p><strong>Website:</strong> <a href=http://www.junctionclinic.com/contact.html>http://www.junctionclinic.com/contact.html</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.10865, 42.33101]}, "properties": {"title": "Junction Clinic Medical Center", "description": "<h3>Junction Clinic Medical Center</h3><p><strong>Address:</strong>4771 Michigan Ave </p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138972600</p><p><strong>Website:</strong> <a href=http://www.junctionclinic.com/>http://www.junctionclinic.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.1066, 42.34499]}, "properties": {"title": "Smith Flowers", "description": "<h3>Smith Flowers</h3><p><strong>Address:</strong>3908 W Warren Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48208</p><p><strong>Phone:</strong>3138982340</p><p><strong>Website:</strong> <a href=https://www.smithsfoodanddrug.com/topic/flowers-at>https://www.smithsfoodanddrug.com/topic/flowers-at</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.13393, 42.3314]}, "properties": {"title": "Green Door Alternative", "description": "<h3>Green Door Alternative</h3><p><strong>Address:</strong>7304 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3132549468</p><p><strong>Website:</strong> <a href=http://www.greendooralternative.com/>http://www.greendooralternative.com/</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.12883, 42.33168]}, "properties": {"title": "CVS", "description": "<h3>CVS</h3><p><strong>Address:</strong>6862 Michigan Ave</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138496110</p><p><strong>Website:</strong> <a href=https://www.cvs.com/store-locator/cvs-pharmacy-address/6862+N+Michigan+Ave-Detroit-MI-48210/storeid=8141?WT.mc_id=LS_GOOGLE_FS_8141>https://www.cvs.com/store-locator/cvs-pharmacy-address/6862+N+Michigan+Ave-Detroit-MI-48210/storeid=8141?WT.mc_id=LS_GOOGLE_FS_8141</a></p>"}}, {"type": "Feature", "geometry": {"type": "Healthcare", "coordinates": [-83.14708, 42.32828]}, "properties": {"title": "American Indian Farm Services", "description": "<h3>American Indian Farm Services</h3><p><strong>Address:</strong>4880 Lawndale St</p><p><strong>City:</strong> Detroit</p><p><strong>State:</strong>Michigan</p><p><strong>Postal Code:</strong>48210</p><p><strong>Phone:</strong>3138463718</p><p><strong>Website:</strong> <a href=https://www.aihfs.org/coronavirus.html>https://www.aihfs.org/coronavirus.html</a></p>"}}]'
+
+            var geoObj = JSON.parse(geoText)
+
+            var geojson = {
+                type: 'LandmarkCollection',
+                features: geoObj,
+                cluster: true,
+                clusterRadius: 80,
+            };
+              
+            // add markers to map
+            geojson.features.forEach(function(marker) {
+              // create a HTML element for each feature
+              var el = document.createElement('div');
+              el.className = marker.geometry.type;
+              // make a marker for each feature and add to the map
+              new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup().setHTML(marker.properties.description))
+                .addTo(map);
+            });
+              
+            map.on('load', function () {
+                map.addSource('Zone1', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.09488603537166, 42.34282489933905],
+                                    [-83.10043706526658, 42.334779115861046],
+                                    [-83.09956999014557, 42.333283521290895],
+                                    [-83.09696876437008, 42.33406693236378],
+                                    [-83.09272972977297, 42.327656918702814],
+                                    [-83.08719008228815, 42.328404787289884],
+                                    [-83.08781630330816, 42.33168105915681],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone1',
+                    'type': 'fill',
+                    'source': 'Zone1',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#ffcb6b',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone1-label',
+                    'type': 'symbol',
+                    'source': 'Zone1',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone1',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone2', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.10091877370854, 42.334992769366465],
+                                    [-83.09494558859447, 42.342933041198904],
+                                    [-83.09995535675468, 42.34951950129272],
+                                    [-83.10925233035965, 42.34692060216759],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone2',
+                    'type': 'fill',
+                    'source': 'Zone2',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#fca9a9',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone2-label',
+                    'type': 'symbol',
+                    'source': 'Zone2',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone2',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone3', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.10077426086846, 42.33463667970104],
+                                    [-83.10385719512088, 42.33894522713635],
+                                    [-83.12139138368158, 42.3326425412955],
+                                    [-83.11537002771979, 42.32452289645957],
+                                    [-83.10703647106871, 42.32541325955323],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone3',
+                    'type': 'fill',
+                    'source': 'Zone3',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#fcfca9',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone3-label',
+                    'type': 'symbol',
+                    'source': 'Zone3',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone3',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone4', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.10975166056691, 42.34713981451198],
+                                    [-83.1039229879959, 42.339164467464606],
+                                    [-83.121553518252, 42.33261253271987],
+                                    [-83.12487730674289, 42.337384117957484],
+                                    [-83.11832607145648, 42.340268258845306],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone4',
+                    'type': 'fill',
+                    'source': 'Zone4',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#7e98cc',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone4-label',
+                    'type': 'symbol',
+                    'source': 'Zone4',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone4',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone5', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.11548399155622, 42.32445726899987],
+                                    [-83.13176573807688, 42.32292581340546],
+                                    [-83.13769075234327, 42.331045664375765],
+                                    [-83.12054193056413, 42.331116886501476],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone5',
+                    'type': 'fill',
+                    'source': 'Zone5',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#7b8764',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone5-label',
+                    'type': 'symbol',
+                    'source': 'Zone5',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone5',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone6', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.1205901014118, 42.331294941462986],
+                                    [-83.12540718618123, 42.33766897705841],
+                                    [-83.13850965675407, 42.33254131208024],
+                                    [-83.13778709403866, 42.33122371953886],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone6',
+                    'type': 'fill',
+                    'source': 'Zone6',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#94ffbd',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone6-label',
+                    'type': 'symbol',
+                    'source': 'Zone6',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone6',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone7', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.13831697280597, 42.33229203986998],
+                                    [-83.13171756667185, 42.3228189662125],
+                                    [-83.14693955454322, 42.31986279031983],
+                                    [-83.1530090813527, 42.3287309013246],
+                                    [-83.156429211539, 42.327911810940506],
+                                    [-83.15681457832056, 42.32901579982774],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone7',
+                    'type': 'fill',
+                    'source': 'Zone7',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#e29eff',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone7-label',
+                    'type': 'symbol',
+                    'source': 'Zone7',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone7',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone8', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.1565083995531, 42.329419058965456],
+                                    [-83.15679742463928, 42.33718199673949],
+                                    [-83.14909008900821, 42.340030540912025],
+                                    [-83.1483675262928, 42.34469475334025],
+                                    [-83.14586264221269, 42.3447659600087],
+                                    [-83.14547727543112, 42.34145476460871],
+                                    [-83.13882969844933, 42.332659667844524],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone8',
+                    'type': 'fill',
+                    'source': 'Zone8',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#97bf9e',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone8-label',
+                    'type': 'symbol',
+                    'source': 'Zone8',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone8',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone9', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.14586264221269, 42.3447659600087],
+                                    [-83.14547727543112, 42.34145476460871],
+                                    [-83.13882969844933, 42.332659667844524],
+                                    [-83.13073699624023, 42.335579633980046],
+                                    [-83.13786628169898, 42.345050785919696],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone9',
+                    'type': 'fill',
+                    'source': 'Zone9',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#fffead',
+                        'fill-opacity': 0.5
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone9-label',
+                    'type': 'symbol',
+                    'source': 'Zone9',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone9',
+                        "text-size": 20
+                    },
+                });
+            });
+
+              
+            map.on('load', function () {
+                map.addSource('Zone10', {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'Feature',
+                        'name':'Zone10',
+                        'geometry': {
+                            'type': 'Polygon',
+                            'coordinates': [
+                                [
+                                    [-83.13073699624023, 42.335579633980046],
+                                    [-83.13786628169898, 42.345050785919696],
+                                    [-83.12668496010703, 42.3444846405005],
+                                    [-83.11406419801112, 42.34455584740692],
+                                    [-83.11955567464827, 42.34021207852613],
+                                ]
+                            ]
+                        }
+                    }
+                });
+                map.addLayer({
+                    'id': 'Zone10',
+                    'type': 'fill',
+                    'source': 'Zone10',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#5a785b',
+                        'fill-opacity': 0.5
+                    },
+                });
+                map.addLayer({
+                    'id': 'Zone10-label',
+                    'type': 'symbol',
+                    'source': 'Zone10',
+                    'layout': {
+                      "text-allow-overlap":true,
+                        "text-field":'Zone10',
+                        "text-size": 20
+                    },
+                });
+            });
+        </script>
+     
+    </body>
+</html>

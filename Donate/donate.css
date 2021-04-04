@@ -1,0 +1,11 @@
+/* Inject  in the page CSS head */
+
+.custon-button {
+	width: 8em;
+}
+
+.custon-button:hover {
+	opacity: 0.8;
+	transition: opacity 0.1s linear 0s;
+    backface-visibility: hidden;
+}

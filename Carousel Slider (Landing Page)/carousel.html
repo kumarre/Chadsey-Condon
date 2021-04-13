@@ -1,0 +1,181 @@
+<!-- This code will go in the code block of the carousel slider -->
+
+<!-- Slideshow container for the entire carousel page section-->
+<div class="slideshow-container">
+  <!-- Full-width images with number and caption text -->
+
+  <!-- Code section for slide # 1 -->
+  <div class="mySlides fade">
+    <!--Slide 1 img. Change text next to <img src > tag to change img url -->
+    <img
+      src="https://static1.squarespace.com/static/6060f433464a766c6a7df2a6/t/606dd32314d3f936fece2209/1617810212028/Advanced-Care-Planning-Poster-new-pic-768x1166.jpg"
+      alt="carousel slider image # 1"
+    />
+
+    <div class="text-containter">
+      <!--Slide 1 title. Change text with <h1> tags to change title -->
+      <h2>Advanced Care Planning</h2>
+
+      <!--Slide 1 subtitle. Change text with <h2> tags to change subtitle -->
+      <h3>Choosing your Healthcare Agent</h3>
+
+      <!--Slide 1 text. Change text with <p> tags to change text. keep this to 1-3 sentences -->
+      <p class="slider-text">When: 4/29/2021 at 6:00pm</p>
+
+      <!--Slide 1 button link. Change text next <a href> tag to change where the button will take users. C -->
+      <a
+        href="/event-signup-form"
+        class="sqs-block-button-element--medium sqs-block-button-element"
+      >
+        Event Information
+      </a>
+    </div>
+  </div>
+
+  <!-- Code section for slide # 2 -->
+  <div class="mySlides fade">
+    <!--Slide 2 img. Change text next to <img src > tag to change img url -->
+    <img
+      src="https://static1.squarespace.com/static/6060f433464a766c6a7df2a6/t/606dceb861c2f25d663eebff/1617809081707/20160524_130444.jpg"
+      alt="carousel slider image # 2"
+    />
+
+    <div class="text-containter">
+      <!--Slide 2 title. Change text with <h1> tags to change title -->
+      <h2>Coming Soon!</h2>
+
+      <!--Slide 2 subtitle. Change text with <h2> tags to change subtitle -->
+      <h3>Neighborhood Inclusion Task Force</h3>
+
+      <!--Slide 2 text. Change text with <p> tags to change text. keep this to 1-3 sentences -->
+      <p class="slider-text">
+        Support ALL residents to ensure their needs are included in development
+        plans for the Chadsey Condon Neighborhood.
+      </p>
+
+      <!--Slide 2 button link. Change text next <a href> tag to change where the button will take users. C -->
+      <a
+        href="/mailchimpsignup"
+        class="sqs-block-button-element--medium sqs-block-button-element"
+      >
+        Learn about the Task Force
+      </a>
+    </div>
+  </div>
+
+  <!-- Code section for slide # 3 -->
+  <div class="mySlides fade">
+    <!--Slide 3 img. Change text next to <img src > tag to change img url -->
+    <img
+      src="https://static1.squarespace.com/static/6060f433464a766c6a7df2a6/t/606dc26809047d5354678abc/1617805929630/20171221_174135.jpg"
+      alt="carousel slider image # 3"
+    />
+
+    <div class="text-containter">
+      <!--Slide 3 title. Change text with <h1> tags to change title -->
+      <h2>Youth Leadership Council</h2>
+
+      <!--Slide 3 subtitle. Change text with <h2> tags to change subtitle -->
+      <h3>Meets every 3rd Thursday at 5pm</h3>
+
+      <!--Slide 3 text. Change text with <p> tags to change text. keep this to 1-3 sentences -->
+      <p class="slider-text">
+        We focus on youth voice, career, college access, and leadership
+        development.
+      </p>
+
+      <!--Slide 3 button link. Change text next <a href> tag to change where the button will take users. C -->
+
+      <a
+        href="/external-resource-library"
+        class="sqs-block-button-element--medium sqs-block-button-element"
+      >
+        Learn about the Council
+      </a>
+    </div>
+  </div>
+
+  <!-- Code section for slide # 4 -->
+  <div class="mySlides fade">
+    <!--Slide 4 img. Change text next to <img src > tag to change img url -->
+    <img
+      src="https://static1.squarespace.com/static/6060f433464a766c6a7df2a6/t/606db9741393686a043696de/1617803636792/jason-rosewell-ASKeuOZqhYU-unsplash.jpg"
+      alt="carousel slider image # 4"
+    />
+
+    <div class="text-containter">
+      <!--Slide 4 title. Change text with <h1> tags to change title -->
+      <h2>We want to hear from you!</h2>
+
+      <!--Slide 4 subtitle. Change text with <h2> tags to change subtitle -->
+      <h3></h3>
+
+      <!--Slide 4 text. Change text with <p> tags to change text. keep this to 1-3 sentences -->
+      <p class="slider-text">
+        Click the button below to complete our Community Feedback Survey.
+      </p>
+
+      <!--Slide 4 button link. Change text next <a href> tag to change where the button will take users.  -->
+      <a
+        href="https://forms.gle/LvAiXYmpnhvA9muz5"
+        class="sqs-block-button-element--medium sqs-block-button-element"
+      >
+        Take our Survey
+      </a>
+    </div>
+  </div>
+
+  <!-- Next and previous buttons.-->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- The dots/circles. Copy and paste one of the span lines to add a new slide. Remove one of the lines to delete a slide. Update the currentslide number for any changes-->
+  <div style="text-align: center" class="dots-containter">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+  </div>
+</div>
+
+<!--Javascript section for carousel.  -->
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Next/previous controls
+  function plusSlides(number) {
+    showSlides((slideIndex += number));
+  }
+
+  // Thumbnail image controls
+  function currentSlide(number) {
+    showSlides((slideIndex = number));
+  }
+
+  function showSlides(number) {
+    let i;
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+
+    if (number > slides.length) {
+      slideIndex = 1;
+    }
+    if (number < 1) {
+      slideIndex = slides.length;
+    }
+
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+
+    setTimeout(showSlides, 8000); //changes slide every 8 seconds
+  }
+</script>

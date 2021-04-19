@@ -1,0 +1,70 @@
+/*External Resources Buttons*/
+
+/*making buttons center-aligned on the page*/
+
+/* uncomment the following line of code if needing to copy to Squarespace
+[data-section-id="6071fa1df13bcd06e30588a9"] */
+
+/* uncomment the following line of code if needing to copy to Squarespace
+{ */
+    .sqs-row {
+      position: relative;
+        display:flex;
+        justify-content: center;
+      
+      /* avoid the buttons spread throughout the screen */
+      /* width:80% !important; */
+      /* center the button container */
+      margin:0 auto;
+   
+  }
+  
+    .sqs-col-12 .sqs-col-3 {
+      width: auto !important;
+  
+  }
+    
+    /* controlling the height of the button container */
+    .sqs-layout{
+      height:5rem;
+      
+    }
+    
+    a.sqs-block-button-element{
+      /* making button text center aligned */
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      
+      /* defining button color */
+      color:#962026;
+      font-size:0.8rem;
+      background-color:white;
+      border: 2px solid #962026;
+      
+       /* adjusting button size to make them look more balanced */
+      padding: 1rem 1.2rem;
+      min-width:3rem;
+      min-height:2rem;
+  }
+    
+    .sqs-block-button-element:hover{
+        background-color:#962026 !important;
+        color:white  !important;
+      border:2px solid white;
+  }
+  
+  .sqs-block-button-element:focus{
+    background-color:#611216;
+    color:white;
+  }
+  
+  /* uncomment the following line of code if needing to copy to Squarespace
+    } */
+  
+  /* the active class that will be added to the selected button */
+  .button_active{
+     background-color:#962026 !important;
+        color:white  !important;
+      border:2px solid white;
+  }

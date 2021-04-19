@@ -1,0 +1,18 @@
+/* EXTERNAL RESOURCES */
+/*External Resources Card*/
+.blog-basic-grid--container{
+  /* adding background color to the resources card */
+	background-color:#fafafa;
+	padding:1rem;
+   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 2px 5px 0 rgba(0, 0, 0, 0.05);  
+}
+
+/* adding hovering state to the card to enhance the discoverability of the hovered card */
+.blog-basic-grid--container:hover{
+   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  cursor:pointer;
+}
+
+#block-05f2353bdd9fa2a1b1f3 p{
+  font-size:0.8rem;
+}

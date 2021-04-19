@@ -13,6 +13,7 @@
   cursor:pointer;
 }
 
-#block-05f2353bdd9fa2a1b1f3 p{
-  font-size:0.8rem;
+/* making the supporting texts smaller */
+#yui_3_17_2_1_1618810928564_498 p{
+  font-size:0.9rem;
 }

@@ -1,11 +1,14 @@
+/* -------------------- */
+/* Landing Page Carousel */
+
 /* This is to be placed in the Custom CSS section of squarespace.
 It is styled to fit squarespaces Custom CSS layout */
 
-/* Landing Page Carousel */
 
 /* The data section id is associated with the specific page section the zone map is located in on Squarespace.
 Wrapping the section id inside of "[]" allows you to place all of the associated styles within "{}" brackets. This saves
 the developer from having to rewrite the id for each css style   */
+
 
 /*This removes padding around the content in the section */
 [data-section-id="6071f9dcf13bcd06e3058097"] {
@@ -21,9 +24,10 @@ the developer from having to rewrite the id for each css style   */
 
   /*Fixes the reverse margin that SS7.1 adds*/
   .sqs-layout > .sqs-row {
-    margin-right: 0rem;
-    margin-left: 0rem;
-    margin-top: 7rem; //originally 0
+    margin-right: -1rem; //originally 0
+    margin-left: -1rem; //originally 0
+    margin-top: 0rem; //originally 0
+    margin-bottom: 0rem;
   }
 
   /*remove the padding around the code block that the HTML is in*/
@@ -37,7 +41,7 @@ the developer from having to rewrite the id for each css style   */
     position: relative;
     display: block;
     margin: auto;
-    height: 85vh !important; //originally 100vh
+    height: 100vh !important; //originally 100vh
   }
 
   /*Hiding Each Slide by default*/
@@ -47,7 +51,7 @@ the developer from having to rewrite the id for each css style   */
     /*Making the images be full-width and height of the section */
     img {
       width: 100% !important;
-      height: 100vh !important;
+      height: 102vh !important;
       object-fit: cover !important;
     }
 
@@ -119,6 +123,19 @@ the developer from having to rewrite the id for each css style   */
     margin-left: auto !important;
     margin-right: auto !important;
   }
+  
+  .image-push-down-mobile{
+      display: none;
+    }
+  
+  .image-push-down-laptop{
+      display: block;
+    }
+  
+  .image-push-down-desktop{
+      display: none;
+    }
+  
 
   /*Dots that go at the bottom of the carousel */
   .dot {
@@ -170,23 +187,33 @@ the developer from having to rewrite the id for each css style   */
     .text-containter {
       width: 70%;
     }
-    .sqs-layout > .sqs-row {
-      margin-top: 4rem; //originally 0
+    .image-push-down-mobile{
+      display: block;
     }
-    .slideshow-container {
-      height: 95vh !important;
+    .image-push-down-laptop{
+      display: none;
     }
+    .image-push-down-desktop{
+      display: none;
+    }
+  
+
   }
   /* code for desktop layout */
   @media only screen and (min-width: 1800px) {
-    .text-containter {
-      width: 70%;
+    img {
+      width: 100% !important;
+      height: 100vh !important;
     }
-    .sqs-layout > .sqs-row {
-      margin-top: 11rem; //originally 0
+    .image-push-down-mobile{
+      display: none;
     }
-    .slideshow-container {
-      height: 80vh !important;
+    .image-push-down-laptop{
+      display: none;
     }
+    .image-push-down-desktop{
+      display: block;
+    }
+    
   }
 }

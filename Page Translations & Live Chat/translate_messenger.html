@@ -1,0 +1,114 @@
+<!-- Code Injection - Header -->
+<!-- ----------------------- -->
+
+<!-- create google translate element -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,ar,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    }
+</script>
+<!-- initialize element -->
+<script type="text/javascript"
+  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+<!-- Code Injection - Footer -->
+<!-- ----------------------- -->
+
+<!-- place element -->
+<div id="google_translate_element"></div>
+
+<!-- translation links -->
+<div id="translation" class="desktop notranslate">
+  <ul class="translation_links">
+    <li><a href="#" class="language_link eng selected" data-lang="en" data-placement="0">Translate</a></li>
+    <li><a href="#" class="language_link ara" data-lang="ar" data-placement="1">يترجم</a></li>
+    <li><a href="#" class="language_link spa" data-lang="es" data-placement="2">Traducir</a></li>
+  </ul>
+</div>
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+
+<!-- addeventListener to each language in the visible list -->
+<script type="text/javascript">
+  // get all the languages
+  let languages = document.getElementsByClassName("language_link");
+  for (let i = 0; i < languages.length; i++) {
+    (function(index) {
+      languages[index].addEventListener("click", function() {
+        // go to hidden google translate dropdown
+        let dropdown = document.getElementsByClassName("goog-te-menu-frame")[0].contentDocument;
+        for (let j = 0; j < languages.length; j++) {
+          if (languages[j].classList.contains("selected")) {
+            languages[j].classList.remove("selected");
+            break;
+          }
+        }
+        languages[index].classList.add("selected");
+        // click on the option that matches the index of the language clicked on
+        dropdown.getElementsByTagName("a")[index].click();
+        loadMessenger(index);
+      })
+    })(i);
+  }
+
+  // return selected page language for plugin
+  function pageLanguage(index) {
+    if (index === 0) {
+      console.log("pageLanguage returned English");
+      return 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js?t='+ (new Date()).getTime();
+    }
+
+    else if (index === 1) {
+      console.log("pageLanguage returned Arabic");
+      return 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js?t='+ (new Date()).getTime();
+    }
+
+    else {
+      console.log("pageLanguage returned Spanish");
+      return 'https://connect.facebook.net/es_LA/sdk/xfbml.customerchat.js?t='+ (new Date()).getTime();;
+    }
+  }
+ 
+  // initialize messenger plugin
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v10.0'
+    });
+  }
+
+  // load plugin
+  function loadMessenger (index) {
+    let source = pageLanguage(index);
+    (function(d, s, id) {
+        let js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          d.getElementById(id).remove();
+          fjs = d.getElementsByTagName(s)[0];
+        }
+        js = d.createElement(s); 
+        js.id = id;
+        try {
+            js.src = source;
+        } catch (error) {
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js?t=';
+        }
+        fjs.parentNode.insertBefore(js,fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }
+
+  loadMessenger(0);
+</script>
+
+<!-- Messenger chat plugin code -->
+<div class="fb-customerchat"
+  attribution="setup_tool"
+  page_id="1672244133057923"
+theme_color="#962026"
+logged_in_greeting="Hi! Want to talk to a organization member? Live chat hours are Mon-Fri 9am-5pm."
+logged_out_greeting="Hi! Want to talk to a organization member? Live chat hours are Mon-Fri 9am-5pm.">
+</div>

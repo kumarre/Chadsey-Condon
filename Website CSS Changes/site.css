@@ -1,0 +1,50 @@
+/* -------------------- */
+/* HEADER */
+
+/* Decrease height of header */
+.header .header-announcement-bar-wrapper {
+    padding-bottom: 2vw;
+}
+
+/* Keep pointer as default when hovering over non-clickable folder */
+a.header-nav-folder-title {
+    cursor: default;
+}
+
+/* Add color to active nav link */
+.header-nav-item--active>a:first-child {
+    color: #962026 !important;
+}
+
+/* Add states to nav items */
+.header-nav-item a:hover, .header-nav-item a:focus, .header-nav-folder-item--active a {
+    color: #962026 !important;
+    background-repeat: repeat-x !important;
+    background-image: linear-gradient(to right,currentColor 100%,currentColor 0) !important;
+    background-size: 1px 1px !important;
+    background-position: 0 calc(100% - 0.1em) !important;
+}
+
+/* Change width of dropdown content underline */
+.header-nav .header-nav-item--folder .header-nav-folder-content {
+    min-width: auto;
+}
+
+/* -------------------- */
+/* PAGE */
+
+/* Keep body at the top of the page even after selecting translations */
+body {
+    top: 0;
+}
+
+
+/* Decrease space between sections */
+.page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section).section-height--medium>.content-wrapper {
+	padding-top: 0;
+}
+
+
+#page .page-section:first-child .content-wrapper {
+    padding-bottom: 0;
+}

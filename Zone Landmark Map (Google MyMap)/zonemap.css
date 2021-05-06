@@ -1,14 +1,12 @@
 /* -------------------- */
 /* Zone Map */
 
-/* This code will go in the Custom CSS section of squarespace
-
-
+/* 
 The data section id is associated with the specific page section the zone map is located in on Squarespace.
 Wrapping the section id inside of "[]" allows you to place all of the associated styles within "{}" brackets. This saves
 the developer from having to rewrite the id for each css style  */
 
-[data-section-id="6071fa30f13bcd06e3058b2f"] {
+[data-section-id="eda3437a74f0f9d332af"] {
   iframe {
     width: 30rem;
     height: 20rem;

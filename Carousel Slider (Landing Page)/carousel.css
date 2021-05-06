@@ -1,17 +1,12 @@
 /* -------------------- */
 /* Landing Page Carousel */
 
-/* This is to be placed in the Custom CSS section of squarespace.
-It is styled to fit squarespaces Custom CSS layout */
-
-
 /* The data section id is associated with the specific page section the zone map is located in on Squarespace.
 Wrapping the section id inside of "[]" allows you to place all of the associated styles within "{}" brackets. This saves
 the developer from having to rewrite the id for each css style   */
 
-
-/*This removes padding around the content in the section */
-[data-section-id="6071f9dcf13bcd06e3058097"] {
+[data-section-id="60848d640b98be7e7348363c"] {
+  /*This removes padding around the content in the section */
   padding-top: 0rem !important;
   box-sizing: border-box !important;
 
@@ -24,14 +19,14 @@ the developer from having to rewrite the id for each css style   */
 
   /*Fixes the reverse margin that SS7.1 adds*/
   .sqs-layout > .sqs-row {
-    margin-right: -1rem; //originally 0
-    margin-left: -1rem; //originally 0
+    margin-right: 0rem; //originally 0
+    margin-left: 0rem; //originally 0
     margin-top: 0rem; //originally 0
     margin-bottom: 0rem;
   }
 
   /*remove the padding around the code block that the HTML is in*/
-  #block-9b7e28591b7b84b7c8f5 {
+  #block-yui_3_17_2_1_1619299330654_4229{
     padding: 0rem 0rem 0rem 0rem !important;
   }
 

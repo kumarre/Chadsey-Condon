@@ -1,121 +1,49 @@
-<!-- This code will go inside the code block of the zone map -->
-
-<!-- This is the main title for the page-->
-<h1>Chadsey Zone Landmarks Map</h1>
-
-<!-- This is the paragraph under the title for the page-->
-<p>
-  The community is divided into 10 zones, and landmarks are defined as places of
-  interest in the neighborhood. For example, Faith-based organizations and local
-  small businesses would be considered landmarks.
-</p>
-
 <!-- This is the zone map button title-->
-<h2>Select a zone to view landmarks within that zone</h2>
+<h2>
+    Select a zone to view landmarks 
+</h2>
 
 <!-- These are the zone buttons for the map-->
 <div class="controls">
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    All
-  </button>
-  <button
-    type="button"
-    class="btncontrol active sqs-block-button-element--medium sqs-block-button-element"
-  >
-    1
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    2
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    3
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    4
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    5
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    6
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    7
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    8
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    9
-  </button>
-  <button
-    type="button"
-    class="btncontrol sqs-block-button-element--medium sqs-block-button-element"
-  >
-    10
-  </button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">All</button>
+    <button type="button" class="btncontrol active sqs-block-button-element--medium sqs-block-button-element">1</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">2</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">3</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">4</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">5</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">6</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">7</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">8</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">9</button>
+    <button type="button" class="btncontrol sqs-block-button-element--medium sqs-block-button-element">10</button>
 </div>
 
 <!-- This is the instruction sentence for how to use the map-->
-<p>
-  Click the icon next to the zone Map title below to view a list of available
-  landmarks for that particular zone .
-</p>
-
+<p> Click the icon next to the zone Map title below to view a list of available landmarks for that particular zone .</p>
+		
 <!-- The <br/> is just to add some extra space-->
-<br />
+<br/>
 
 <!-- This is the map section where a map will appear once a button is chosen-->
 
 <div class="map-responsive">
-  <!-- zone 1 is the default "active" iframe view. -->
-  <iframe
-    src="https://www.google.com/maps/d/embed?mid=1giTQ13z0HDKPd_v3610ggddkcg02UGUu"
-    class="viewedIframeMap"
-  >
-  </iframe>
+ <!-- zone 1 is the default "active" iframe view. -->
+   <iframe src="https://www.google.com/maps/d/embed?mid=1giTQ13z0HDKPd_v3610ggddkcg02UGUu" class="viewedIframeMap">	</iframe>
 </div>
 
-<script>
-  //variable for the container of buttons
-  const container = document.querySelector(".controls");
 
-  //variable for the list of buttons in container
-  const btns = container.querySelectorAll(".btncontrol");
+    <script>
+    //variable for the container of buttons
+    const container = document.querySelector(".controls");
 
-  //variable for the iframe currently viewed
-  const currentIframe = document.querySelector(".viewedIframeMap");
+    //variable for the list of buttons in container
+    const btns = container.querySelectorAll(".btncontrol");
 
-  /*list of ZoneMap Iframes from Zone 0 (All) to Zone 10
-For example, the [0] represents the "All" google MyMap iframe and [6] represents the zone 6 google MyMap iframe */
-  const zoneMapSRCList = [
+    //variable for the iframe currently viewed
+    const currentIframe = document.querySelector(".viewedIframeMap");
+
+// //list of ZoneMap Iframes from Zone 0 (All) to Zone 10
+    const zoneMapSRCList = [
     "https://www.google.com/maps/d/embed?mid=1YsATKZKXYjfQWLfKTmjVnXD2FmrQI49L",
     "https://www.google.com/maps/d/embed?mid=1giTQ13z0HDKPd_v3610ggddkcg02UGUu",
     "https://www.google.com/maps/d/embed?mid=1BXhi-TAlL4esiBOW_ZuMo6j-gGWmljq0",
@@ -126,117 +54,72 @@ For example, the [0] represents the "All" google MyMap iframe and [6] represents
     "https://www.google.com/maps/d/embed?mid=1qMeLViSL7xvTKutlPerqylkA0-X_iYS4",
     "https://www.google.com/maps/d/embed?mid=1RzJ9lxI7QBoW7sHxPI-_X7-XPAqvcM-1",
     "https://www.google.com/maps/d/embed?mid=1XhD97GPAMkDx1bAAqV_3-iivSrSkFClZ",
-    "https://www.google.com/maps/d/embed?mid=1cxdFG-Dv9KtJqyjU9o4JC9049DailQDC",
-  ];
+    "https://www.google.com/maps/d/embed?mid=1cxdFG-Dv9KtJqyjU9o4JC9049DailQDC"
+    ]
 
-  // This code adds the "active" class to a clicked zone map button to let the user know which map they are seeing
-  for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-      let currentBtn = document.getElementsByClassName("active");
 
-      // Removes active class from buttons not clicked
-      if (currentBtn.length > 0) {
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+        let currentBtn = document.getElementsByClassName("active");
+
+        // Removes active class from buttons not clicked
+        if (currentBtn.length > 0) {
         currentBtn[0].classList.remove("active");
-      }
-      // Add the active class to the current/clicked button
-      btns[i].classList.add("active");
-      currentIframe.src = zoneMapSRCList[i];
-    });
-  }
+        }
+        // Add the active class to the current/clicked button
+        btns[i].classList.add("active");
+        currentIframe.src = zoneMapSRCList[i];
+     }
+    )};
+      
+      
+
 </script>
 
 <!-- The code is for the zone map legend-->
-<h3>Legend</h3>
+  <h3>
+      Legend
+  </h3>
 
 <table>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn4.iconfinder.com/data/icons/unigrid-flat-buildings/90/008_021_museum_government_administration_building-512.png"
-      />
-    </td>
-    <td>: Faith-based Organization</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn0.iconfinder.com/data/icons/learning-icons-rounded/110/School-256.png"
-      />
-    </td>
-    <td>: School</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn0.iconfinder.com/data/icons/medical-health-vol-2-1/512/Book_health_healthcare_medical_medical_book-512.png"
-      />
-    </td>
-    <td>: Healthcare</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn4.iconfinder.com/data/icons/creative-process-16/512/Build-256.png"
-      />
-    </td>
-    <td>: City Services</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn4.iconfinder.com/data/icons/energy-3/63/car-256.png"
-      />
-    </td>
-    <td>: Auto, Hardware, Repair</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn1.iconfinder.com/data/icons/business-finance-vol-7-6/512/06-256.png"
-      />
-    </td>
-    <td>: Art & Musuem</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn0.iconfinder.com/data/icons/seo-flat-long-shadow-1/512/Structure-256.png"
-      />
-    </td>
-    <td>: Non-profit Organization</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn2.iconfinder.com/data/icons/food-and-beverages-3/78/8-512.png"
-      />
-    </td>
-    <td>: Food</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn3.iconfinder.com/data/icons/unigrid-flat-food/90/006_142_grocery_food_gastronomy_bag-512.png"
-      />
-    </td>
-    <td>: Grocery</td>
-  </tr>
-  <tr>
-    <td>
-      <img
-        class="icon"
-        src="https://cdn4.iconfinder.com/data/icons/sports-12/63/golf-512.png"
-      />
-    </td>
-    <td>: Block Clubs</td>
-  </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn4.iconfinder.com/data/icons/unigrid-flat-buildings/90/008_021_museum_government_administration_building-512.png'></td>
+        <td>: Faith-based Organization</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn0.iconfinder.com/data/icons/learning-icons-rounded/110/School-256.png'></td>
+        <td>: School</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn0.iconfinder.com/data/icons/medical-health-vol-2-1/512/Book_health_healthcare_medical_medical_book-512.png'></td>
+        <td>: Healthcare</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn4.iconfinder.com/data/icons/creative-process-16/512/Build-256.png'></td>
+        <td>: City Services</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn4.iconfinder.com/data/icons/energy-3/63/car-256.png'></td>
+        <td>: Auto, Hardware, Repair</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn1.iconfinder.com/data/icons/business-finance-vol-7-6/512/06-256.png'></td>
+        <td>: Art & Musuem</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn0.iconfinder.com/data/icons/seo-flat-long-shadow-1/512/Structure-256.png'></td>
+        <td>: Non-profit Organization</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn2.iconfinder.com/data/icons/food-and-beverages-3/78/8-512.png'></td>
+        <td>: Food</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn3.iconfinder.com/data/icons/unigrid-flat-food/90/006_142_grocery_food_gastronomy_bag-512.png'></td>
+        <td>: Grocery</td>
+    </tr>
+    <tr>
+        <td><img class='icon' src='https://cdn4.iconfinder.com/data/icons/sports-12/63/golf-512.png'></td>
+        <td>: Block Clubs</td>
+    </tr>
 </table>
